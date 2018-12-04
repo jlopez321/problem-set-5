@@ -254,18 +254,32 @@ function credit() {
 
 function guess() {
 
-let guess=0;
-let attempt=0;
-let random=0;
-random=(Math.floor(Math.random() * 2));
-while (true){
-guess = prompt("Please enter a number between 1 and 1,000")
-attempt++;
-if (guess == random){
-  document.getElementById('guess-output').innerHTML=("Correct, the number was: " + random + "And the number of attempts it took you was: " + attempt)
+let attemptsTaken= 0;
+let guessedNum = false
+let userGuessNum;
+let randomNum = Math.floor(Math.random(1)*1000);
+while(guessedNum == false) {
+  userGuessNum= Number(prompt("Input an integer based guess that is between 1 and 1000!"));
+ if (userGuessNum <= 1000 && userGuessNum >= 1 && Number.isInteger(userGuessNum)) {
+   console.log(randomNum)
+   if(userGuessNum > randomNum) {
+     alert("This attempt was too high!")
+     attemptsTaken+=1;
+   }
+   if(userGuessNum < randomNum) {
+     alert("This attempt was too low!")
+     attemptsTaken+=1;
+   }
+  if(userGuessNum == randomNum) {
+     alert("Correct!")
+     attemptsTaken+=1;
+     found = true;
+     div4=document.getElementById("guess-output")
+     div4.innerHTML = "Number: " + randomNum + "<br/>Attempts: " + attemptsTaken;
+     break;
+   }
+ }
 }
-}
-
   ////////////////// DO NOT MODIFY
   check('guess'); // DO NOT MODIFY
   ////////////////// DO NOT MODIFY
@@ -300,41 +314,46 @@ function hurricane() {
   ///////////////// DO NOT MODIFY
   let windspeed; // DO NOT MODIFY
   ///////////////// DO NOT MODIFY
-  let outputString
-  while (true){
-  windspeed = prompt("Please enter an integer above 0");
-  windspeed=Number(windspeed);
-  if (windspeed >= 0 && Number.isInteger(windspeed)){
-    break
-  } else {
-    windspeed = prompt("Please enter an integer above 0");
-    windspeed=Number(windspeed);
-  }
-}
-  if (windspeed >= 0 && windspeed <= 38){
-    outputString = "The skies are calm..."
-  }
-  if(windspeed >= 157) {
-        document.getElementById("hurricane-output").innerHTML = "Category 5 Hurricane.";
-      }
-      if(windspeed >= 130) {
-        document.getElementById("hurricane-output").innerHTML = "Category 4 Hurricane.";
-      }
-      if(windspeed >= 111) {
-        document.getElementById("hurricane-output").innerHTML = "Category 3 Hurricane.";
-      }
-      if (windspeed >= 96) {
-        document.getElementById("hurricane-output").innerHTML = "Category 2 Hurricane.";
-      }
-      if(windspeed >= 74) {
-        document.getElementById("hurricane-output").innerHTML = "Category 1 Hurricane.";
-      }
-      if(windspeed >= 39) {
-        document.getElementById("hurricane-output").innerHTML = "Tropical Storm.";
-      }
 
-document.getElementById("hurricane-output").innerHTML = (outputString)
-
+windspeed = Number(prompt("Please enter a positive integer for your windspeed"));
+ //legible break
+ while (windspeed < 0) {
+   windspeed = Number(prompt("Please enter a positive integer for your windspeed"));
+ }
+ while (Number.isInteger(windspeed) == false) {
+   windspeed = Number(prompt("Please enter a positive integer for your windspeed"));
+ }
+ console.log(windspeed)
+//legible break
+ if(windspeed >= 157) {
+   let div5=document.getElementById("hurricane-output")
+   div5.innerHTML = "Category 5 Hurricane."
+ }
+ if(windspeed >= 130 && windspeed <= 156){
+     let div5=document.getElementById("hurricane-output")
+     div5.innerHTML = "Category 4 Hurricane."
+ }
+ if (windspeed >= 111 && windspeed < 129){
+    let div5=document.getElementById("hurricane-output")
+   div5.innerHTML = "Category 3 Hurricane."
+ }
+ if (windspeed >= 96 && windspeed < 110){
+   let div5=document.getElementById("hurricane-output")
+   div5.innerHTML = "Category 2 Hurricane."
+ }
+ if (windspeed >= 74 && windspeed < 95){
+   let div5=document.getElementById("hurricane-output")
+   div5.innerHTML = "Category 1 Hurricane."
+ }
+ if (windspeed >= 39 && windspeed < 73){
+   let div5=document.getElementById("hurricane-output")
+   div5.innerHTML = "Tropical Storm."
+ }
+ if(windspeed < 39){
+   let div5=document.getElementById("hurricane-output")
+   div5.innerHTML = "The skies are calm..."
+ }
+  
   ///////////////////////////////// DO NOT MODIFY
   check('hurricane', windspeed); // DO NOT MODIFY
   ///////////////////////////////// DO NOT MODIFY
@@ -379,71 +398,47 @@ function gymnastics() {
    *       scores.push(secondScore);  // will likely be different than mine
    */
 
-  let valid = false;
-   let fourscore = [];
-   let average = 0;
+ do{
+    scoreNum1 = Number(prompt("Please enter a score between 0 and 10"));
+  } while (scoreNum1 < 0.0 || scoreNum1 > 10.0|| !Number.isInteger(scoreNum1)){
+  scores.push(scoreNum1);
+}
+  do{
+    scoreNum2 = Number(prompt("Please enter a score between 0 and 10"));
+  } while (scoreNum2 < 0.0 || scoreNum2 > 10.0|| !Number.isInteger(scoreNum2)){
+  scores.push(scoreNum2);
+}
+  do{
+    scoreNum3 = Number(prompt("Please enter a score between 0 and 10"));
+  } while (scoreNum3 < 0.0 || scoreNum3 > 10.0|| !Number.isInteger(scoreNum3)){
+  scores.push(scoreNum3);
+}
+  do{
+    scoreNum4 = Number(prompt("Please enter a score between 0 and 10"));
+  } while (scoreNum4 < 0.0 || scoreNum4 > 10.0|| !Number.isInteger(scoreNum4)){
+  scores.push(scoreNum4);
+}
+  do{
+    scoreNum5 = Number(prompt("Please enter a score between 0 and 10"));
+  } while (scoreNum5 < 0.0 || scoreNum5 > 10.0|| !Number.isInteger(scoreNum5)){
+  scores.push(scoreNum5);
+}
+  do{
+    scoreNum6 = Number(prompt("Please enter a score between 0 and 10"));
+  } while (scoreNum6 < 0.0 || scoreNum6 > 10.0|| !Number.isInteger(scoreNum6)){
+  scores.push(scoreNum6);
+}
+  let totalScore = Number(scoreNum1) + Number(scoreNum2) + Number(scoreNum3) + Number(scoreNum4) + Number(scoreNum5) + Number(scoreNum6);
+  let averageScore = (totalScore - Math.max(scoreNum1, scoreNum2, scoreNum3, scoreNum4, scoreNum5, scoreNum6) - Math.min(scoreNum1, scoreNum2, scoreNum3, scoreNum4, scoreNum5, scoreNum6)) / 4;
+  let div6 = document.getElementById('gymnastics-output');
 
-  //user input loop
-  while (valid == false) {
-    valid = true
-    let usrscores = prompt("Enter the Scores Between 0.0 and 10.0 separated by spaces");
-    scores = usrscores.split(" ");
-    for (i=0; i<scores.length; i++) {
-      if(0.0 < Number(scores[i]) < 10.0) {
-        scores[i] = Number(scores[i]);
-        //console.log(typeof(scores[i]));
-        
-      }
-      else {
-        valid = false;
-      }
-    }
-  }
-  //sorting function
-  //scores.sort(function(a, b) {return a-b});
-
-  //Insertion Sort For Loop
-  for(let h = 0; h <= scores.length-1; h++) {
-    let k;
-    let el = scores[h];
-    for (k = h-1; k>=0 && (scores[k] > el); k--) {
-      scores[k+1] = scores[k];
-    }
-    scores[k+1] = el;
-
-  }
-  console.log(scores);
-
-  let min = scores[0];
-  let max = scores[scores.length - 1];
-  //console.log(typeof(min));
-  //console.log(typeof(max));
-
-  let origscores = Array.from(scores);
-  //console.log("Origscores 1:")
-  //console.log(origscores);
-
-  scores.splice(0, 1);
-  scores.splice(scores.length - 1, 1);
-
-  //console.log(scores)
-
-  for (j=0;j<=scores.length - 1;j++) {
-    average += scores[j];
-    //console.log(typeof(scores[j]));
-
-  }
-  average = average/scores.length; 
-  average = average.toFixed(2);
-  document.getElementById("gymnastics-output").innerHTML = "Discarded: " + min + ", " + max + "<br/>Score: " + average;
-
-  scores = origscores;
+  div6.innerHTML = "Discarded: " + Math.min(scoreNum1, scoreNum2, scoreNum3, scoreNum4, scoreNum5, scoreNum6) + ', ' + Math.max(scoreNum1, scoreNum2, scoreNum3, scoreNum4, scoreNum5, scoreNum6) + '<br />Score: ' + averageScore.toFixed(2);
   
-  /////////////////////////////// DO NOT MODIFY
+    /////////////////////////////// DO NOT MODIFY
   check('gymnastics', scores); // DO NOT MODIFY
   /////////////////////////////// DO NOT MODIFY
 }
-
+  
 /*
  * Report Card. 5 points.
  *
@@ -491,62 +486,76 @@ function reportCard() {
    *       grades the user enters, respectively.
    */
   
-   let input = true;
-  let inputT = true;
-  let inputQ = true;
-  let inputH = true;
+   let testScore;
+   let quizScore;
+   let homeWorkscore;
+   let testAverage;
+   let quizAverage;
+   let homeworkAverage;
+   let finalGradeAverage;
+   testScore = prompt("Enter an integer between 1 and 100 for your testscore. Continue until all your scores are inputted, once all scores are inputted enter -1. ");
+  while (testScore) {
+    testScore = parseFloat(testScore);
+ if (testScore == -1){
+   testScore = false;
+   break;
+ }
+else if(testScore <= 100.00 && 0.0 <= testScore)
+ {
+   tests += 1;
+   testTotal += testScore;
+ }
+ else{
+ }
+ testScore = prompt("Enter an integer between 1 and 100 for your testscore. Continue until all your scores are inputted, once all scores are inputted enter -1. ")
+}
+quizScore = prompt("Enter an integer between 1 and 100 for your quizscore. Continue until all your scores are inputted, once all scores are inputted enter -1. ");
+while (quizScore) {
+ quizScore = parseFloat(quizScore);
+if (quizScore == -1){
+quizScore = false;
+break;
+ }
+else if(quizScore <= 100.00 && 0.0 <= quizScore)
+{
+quizzes += 1;
+quizTotal += quizScore;
+}
+else{
+}
+quizScore = prompt("Enter an integer between 1 and 100 for your quizscore. Continue until all your scores are inputted, once all scores are inputted enter -1. ")
+}
+homeWorkscore = prompt("Enter an integer between 1 and 100 for your homeworkscore. Continue until all your scores are inputted, once all scores are inputted enter -1. ");
+while (homeWorkscore) {
+ homeWorkscore = parseFloat(homeWorkscore);
+if (homeWorkscore == -1){
+homeWorkscore = false;
+break;
+}
+else if(homeWorkscore <= 100.00 && 0.0 <= homeWorkscore)
+{
+homeworks += 1;
+homeworkTotal += homeWorkscore;
+}
+else{
+}
+homeWorkscore = prompt("Enter an integer between 1 and 100 for your homeworkscore. Continue until all your scores are inputted, once all scores are inputted enter -1. ")
+}
+testAverage = testTotal/tests;
+quizAverage = quizTotal/quizzes;
+homeworkAverage = homeworkTotal/homeworks;
+finalGradeAverage = (testAverage * 0.6) + (quizAverage * 0.3) + (homeworkAverage * 0.1);
 
-  let tweight = 60;
-  let qweight = 30;
-  let hweight = 10;
-
-  while (input) {
-    while(inputT) {
-      let usrinput = prompt("Enter Test Grade")
-      usrinput = Number(usrinput);
-      if (0.0 <= usrinput && usrinput <= 100.0) {
-        tests+=1;
-        testTotal+=usrinput;
-      }
-      else if (usrinput == -1) {
-        inputT = false;
-      }
-      else {}
-        console.log(usrinput);
-    }
-    while(inputQ) {
-      let usrinput = prompt("Enter Quiz Grade")
-      usrinput = Number(usrinput);
-      if (0.0 <= usrinput && usrinput <= 100.0) {
-        quizzes+=1;
-        quizTotal+=Number(usrinput);
-      }
-      else if (usrinput == -1) {
-        inputQ = false;
-      }
-      else {}
-      }
-    while(inputH) {
-      let usrinput = prompt("Enter Homework Grade")
-      usrinput = Number(usrinput);
-      if (0.0 <= usrinput && usrinput <= 100.0) {
-        homeworks+=1;
-        homeworkTotal+=Number(usrinput);
-      }
-      else if (usrinput == -1) {
-        inputH = false;
-        input = false;
-      }
-      else {}
-    }
-  }
-
-  testAvg = ((testTotal)/tests).toFixed(2);
-  quizAvg = ((quizTotal)/quizzes).toFixed(2);
-  homeworkAvg = ((homeworkTotal)/homeworks).toFixed(2);
-  finGrade = (((testAvg*tweight) + (quizAvg*qweight) + (homeworkAvg*hweight))/(tweight+qweight+hweight)).toFixed(2);
-
-  document.getElementById("report-card-output").innerHTML = "Tests: " + testAvg+ "</br>Quizzes: " + quizAvg+ "</br>Homework: " + homeworkAvg + "</br>Grade: " + finGrade;
+console.log(homeWorkscore)
+console.log(quizScore)
+console.log(testScore)
+console.log(testAverage)
+console.log(quizAverage)
+console.log(homeworkAverage)
+console.log(finalGradeAverage)
+  
+let div7=document.getElementById("report-card-output")
+div7.innerHTML = "Tests: " + testAverage.toFixed(2) + "</br>Quizzes: " + quizAverage.toFixed(2) + "</br>Homework: " + homeworkAverage.toFixed(2) + "</br>Grade: " + finalGradeAverage.toFixed(2);
 
   /////////////////////// DO NOT MODIFY
   check('report-card', // DO NOT MODIFY
