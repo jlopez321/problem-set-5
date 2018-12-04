@@ -332,7 +332,6 @@ function hurricane() {
       if(windspeed >= 39) {
         document.getElementById("hurricane-output").innerHTML = "Tropical Storm.";
       }
-}
 
 document.getElementById("hurricane-output").innerHTML = (outputString)
 
