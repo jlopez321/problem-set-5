@@ -312,23 +312,30 @@ function hurricane() {
   }
 }
   if (windspeed >= 0 && windspeed <= 38){
-    console.log("1")
     outputString = "The skies are calm..."
   }
-
+  if(windspeed >= 157) {
+        document.getElementById("hurricane-output").innerHTML = "Category 5 Hurricane.";
+      }
+      if(windspeed >= 130) {
+        document.getElementById("hurricane-output").innerHTML = "Category 4 Hurricane.";
+      }
+      if(windspeed >= 111) {
+        document.getElementById("hurricane-output").innerHTML = "Category 3 Hurricane.";
+      }
+      if windspeed >= 96) {
+        document.getElementById("hurricane-output").innerHTML = "Category 2 Hurricane.";
+      }
+      if(windspeed >= 74) {
+        document.getElementById("hurricane-output").innerHTML = "Category 1 Hurricane.";
+      }
+      if(windspeed >= 39) {
+        document.getElementById("hurricane-output").innerHTML = "Tropical Storm.";
+      }
+}
 
 document.getElementById("hurricane-output").innerHTML = (outputString)
-/*
-  while (true) {
-    cane = prompt("Enter a hurricane windspeed");
-    cane = Number(windspeed);
-(cane>=0 && Number.isInteger(windspeed))
-if (cane>=157 && Number.isInteger(windspeed)) {
-document.getElementById("hurricane-output").innerHTML="Category 5"
-}
 
-}
-*/
   ///////////////////////////////// DO NOT MODIFY
   check('hurricane', windspeed); // DO NOT MODIFY
   ///////////////////////////////// DO NOT MODIFY
@@ -373,6 +380,66 @@ function gymnastics() {
    *       scores.push(secondScore);  // will likely be different than mine
    */
 
+  let valid = false;
+   let fourscore = [];
+   let average = 0;
+
+  //user input loop
+  while (valid == false) {
+    valid = true
+    let usrscores = prompt("Enter the Scores Between 0.0 and 10.0 separated by spaces");
+    scores = usrscores.split(" ");
+    for (i=0; i<scores.length; i++) {
+      if(0.0 < Number(scores[i]) < 10.0) {
+        scores[i] = Number(scores[i]);
+        //console.log(typeof(scores[i]));
+        
+      }
+      else {
+        valid = false;
+      }
+    }
+  }
+  //sorting function
+  //scores.sort(function(a, b) {return a-b});
+
+  //Insertion Sort For Loop
+  for(let h = 0; h <= scores.length-1; h++) {
+    let k;
+    let el = scores[h];
+    for (k = h-1; k>=0 && (scores[k] > el); k--) {
+      scores[k+1] = scores[k];
+    }
+    scores[k+1] = el;
+
+  }
+  console.log(scores);
+
+  let min = scores[0];
+  let max = scores[scores.length - 1];
+  //console.log(typeof(min));
+  //console.log(typeof(max));
+
+  let origscores = Array.from(scores);
+  //console.log("Origscores 1:")
+  //console.log(origscores);
+
+  scores.splice(0, 1);
+  scores.splice(scores.length - 1, 1);
+
+  //console.log(scores)
+
+  for (j=0;j<=scores.length - 1;j++) {
+    average += scores[j];
+    //console.log(typeof(scores[j]));
+
+  }
+  average = average/scores.length; 
+  average = average.toFixed(2);
+  document.getElementById("gymnastics-output").innerHTML = "Discarded: " + min + ", " + max + "<br/>Score: " + average;
+
+  scores = origscores;
+  
   /////////////////////////////// DO NOT MODIFY
   check('gymnastics', scores); // DO NOT MODIFY
   /////////////////////////////// DO NOT MODIFY
@@ -424,6 +491,63 @@ function reportCard() {
    *       representative of the number of tests, quizzes, and homework
    *       grades the user enters, respectively.
    */
+  
+   let input = true;
+  let inputT = true;
+  let inputQ = true;
+  let inputH = true;
+
+  let tweight = 60;
+  let qweight = 30;
+  let hweight = 10;
+
+  while (input) {
+    while(inputT) {
+      let usrinput = prompt("Enter Test Grade")
+      usrinput = Number(usrinput);
+      if (0.0 <= usrinput && usrinput <= 100.0) {
+        tests+=1;
+        testTotal+=usrinput;
+      }
+      else if (usrinput == -1) {
+        inputT = false;
+      }
+      else {}
+        console.log(usrinput);
+    }
+    while(inputQ) {
+      let usrinput = prompt("Enter Quiz Grade")
+      usrinput = Number(usrinput);
+      if (0.0 <= usrinput && usrinput <= 100.0) {
+        quizzes+=1;
+        quizTotal+=Number(usrinput);
+      }
+      else if (usrinput == -1) {
+        inputQ = false;
+      }
+      else {}
+      }
+    while(inputH) {
+      let usrinput = prompt("Enter Homework Grade")
+      usrinput = Number(usrinput);
+      if (0.0 <= usrinput && usrinput <= 100.0) {
+        homeworks+=1;
+        homeworkTotal+=Number(usrinput);
+      }
+      else if (usrinput == -1) {
+        inputH = false;
+        input = false;
+      }
+      else {}
+    }
+  }
+
+  testAvg = ((testTotal)/tests).toFixed(2);
+  quizAvg = ((quizTotal)/quizzes).toFixed(2);
+  homeworkAvg = ((homeworkTotal)/homeworks).toFixed(2);
+  finGrade = (((testAvg*tweight) + (quizAvg*qweight) + (homeworkAvg*hweight))/(tweight+qweight+hweight)).toFixed(2);
+
+  document.getElementById("report-card-output").innerHTML = "Tests: " + testAvg+ "</br>Quizzes: " + quizAvg+ "</br>Homework: " + homeworkAvg + "</br>Grade: " + finGrade;
 
   /////////////////////// DO NOT MODIFY
   check('report-card', // DO NOT MODIFY
