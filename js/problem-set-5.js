@@ -323,7 +323,7 @@ function hurricane() {
       if(windspeed >= 111) {
         document.getElementById("hurricane-output").innerHTML = "Category 3 Hurricane.";
       }
-      if windspeed >= 96) {
+      if (windspeed >= 96) {
         document.getElementById("hurricane-output").innerHTML = "Category 2 Hurricane.";
       }
       if(windspeed >= 74) {
